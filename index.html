@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Application</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 id="heading"></h1>
+  <div class="progress-container">
+    <div class="progress">
+      <div class="progress-bar" style="width: 0;"></div>
+    </div>
+  </div>
+
+  <div class="survey-container" id="survey-container">
+    <div id="questions-container" class="question"></div>
+    <div class="btn-container" id="btn-container">
+      <button class="btn btn-back" onclick="previousQuestion()" style="display:none;">Back</button>
+      <button class="btn btn-continue" onclick="nextQuestion()">Continue</button>
+    </div>
+  </div>
+
+  <div class="survey-results" id="survey-results">
+     <div class="order-summary">
+      <h3 class="order-heading1">Order summary</h3>
+      <div class="order-summary-image-wrapper">
+        <img
+          srcset="
+            //assets.barkbox.com/assets/classic_flow/theme_surprise_me_checkout-1204aa741d6d0c5cff6aee85227938d6d701155f05022c2d5a5614494a4e101b.jpg    1x,
+            //assets.barkbox.com/assets/classic_flow/theme_surprise_me_checkout@2x-09572dff5dc2dffe7023ccb336041eaf3883c3ebd3a1e3da8f74441bce68dfac.jpg 2x
+          "
+          alt="img"
+          class="order-summary-image"
+        />
+      </div>
+      <h4 class="order-name"><span>abc</span>'s first box</h4>
+      <div class="order-summary-box-items">
+        <div class="top-order">
+          <h4 class="subscription-months">12 month subscription</h4>
+          <ul class="order-summary-box-items-list">
+            <li class="dog-size">Medium dog</li>
+            <div id="selectedItems">
+              <li class="food1"></li>
+              <li class="food2"></li>
+              <li class="food3"></li>
+            </div>
+          </ul>
+        </div>
+        <div class="price1">$20.00</div>
+      </div>
+      <div class="order-summary-box-items">
+        <div class="top-order">
+          <h4 class="related-items-heading1"></h4>
+        </div>
+        <div class="related-items-price1"></div>
+      </div>
+      <div class="order-summary-box-items shipping-summary">
+        <div class="top-order">
+          <h4 class="shipping">Standard Shipping</h4>
+        </div>
+        <div class="taxes">---</div>
+      </div>
+      <div class="order-summary-box-items">
+        <div class="top-order">
+          <h4 class="shipping">Taxes</h4>
+        </div>
+        <div class="taxes">---</div>
+      </div>
+      <div class="order-summary-box-items total-summary">
+        <div class="top-order">
+          <h4 class="shipping">Monthly total (USD)
+          </h4>
+        </div>
+        <div class="total">00</div>
+      </div>
+    </div>
+  <form class="user-form">
+    <div class="text-input-component">
+      <input
+        type="text"
+        name=""
+        id="address-first-name"
+        maxlength="50"
+        autocomplete="given-name"
+        placeholder="First name"
+        aria-required="false"
+        aria-labelledby="address-first-name-label"
+        class="text-input-component-input"
+      />
+      <label
+        for="address-first-name"
+        id="address-first-name-label"
+        class="text-input-component-label"
+      >
+        First name
+      </label>
+      <div><!----></div>
+    </div>
+    <div class="text-input-component">
+      <input
+        type="text"
+        name=""
+        id="address-last-name"
+        maxlength="50"
+        autocomplete="family-name"
+        placeholder="Last name"
+        aria-required="false"
+        aria-labelledby="address-last-name-label"
+        class="text-input-component-input"
+      />
+      <label
+        for="address-last-name"
+        id="address-last-name-label"
+        class="text-input-component-label"
+      >
+        Last name
+      </label>
+      <div><!----></div>
+    </div>
+    <div class="text-input-component">
+      <input
+        type="text"
+        name=""
+        id="address-street1"
+        maxlength="50"
+        autocomplete="off"
+        placeholder="Street address"
+        aria-required="false"
+        aria-labelledby="address-street1-label"
+        class="text-input-component-input pac-target-input"
+      />
+      <label
+        for="address-street1"
+        id="address-street1-label"
+        class="text-input-component-label"
+      >
+        Street address
+      </label>
+      <div><!----></div>
+    </div>
+    <div class="text-input-component">
+      <input
+        type="text"
+        name="subscription_shipping_address[address_attributes][street2]"
+        id="address-street2"
+        maxlength="50"
+        autocomplete="address-line2"
+        placeholder="Apt/Suite (optional)"
+        aria-required="false"
+        aria-labelledby="address-street2-label"
+        class="text-input-component-input"
+      />
+      <label
+        for="address-street2"
+        id="address-street2-label"
+        class="text-input-component-label"
+      >
+        Apt/Suite (optional)
+      </label>
+      <div><!----></div>
+    </div>
+    <div class="text-input-component">
+      <input
+        type="text"
+        name="subscription_shipping_address[address_attributes][city]"
+        id="address-city"
+        maxlength="50"
+        autocomplete="address-level2"
+        placeholder="City"
+        aria-required="false"
+        aria-labelledby="address-city-label"
+        class="text-input-component-input"
+      />
+      <label
+        for="address-city"
+        id="address-city-label"
+        class="text-input-component-label"
+      >
+        City
+      </label>
+      <div><!----></div>
+    </div>
+    <div class="flex-container">
+      <div class="flex-item top pr24">
+        <div class="select-component">
+          <select
+            name="subscription_shipping_address[address_attributes][state]"
+            id="address-state"
+            autocomplete="address-level1"
+            onchange="if (!window.__cfRLUnblockHandlers) return false; this.dataset.selected = !!this.value;"
+            data-selected="false"
+            class="select-component-input text--md"
+          >
+            <option value="" label=" "></option>
+            <optgroup label="U.S. States">
+              <option value="AL">AL</option>
+              <option value="AK">AK</option>
+              <option value="AZ">AZ</option>
+              <option value="AR">AR</option>
+              <option value="CA">CA</option>
+              <option value="CO">CO</option>
+              <option value="CT">CT</option>
+              <option value="DE">DE</option>
+              <option value="DC">DC</option>
+              <option value="FL">FL</option>
+              <option value="GA">GA</option>
+              <option value="HI">HI</option>
+              <option value="ID">ID</option>
+              <option value="IL">IL</option>
+              <option value="IN">IN</option>
+              <option value="IA">IA</option>
+              <option value="KS">KS</option>
+              <option value="KY">KY</option>
+              <option value="LA">LA</option>
+              <option value="ME">ME</option>
+              <option value="MD">MD</option>
+              <option value="MA">MA</option>
+              <option value="MI">MI</option>
+              <option value="MN">MN</option>
+              <option value="MS">MS</option>
+              <option value="MO">MO</option>
+              <option value="MT">MT</option>
+              <option value="NE">NE</option>
+              <option value="NV">NV</option>
+              <option value="NH">NH</option>
+              <option value="NJ">NJ</option>
+              <option value="NM">NM</option>
+              <option value="NY">NY</option>
+              <option value="NC">NC</option>
+              <option value="ND">ND</option>
+              <option value="OH">OH</option>
+              <option value="OK">OK</option>
+              <option value="OR">OR</option>
+              <option value="PA">PA</option>
+              <option value="RI">RI</option>
+              <option value="SC">SC</option>
+              <option value="SD">SD</option>
+              <option value="TN">TN</option>
+              <option value="TX">TX</option>
+              <option value="UT">UT</option>
+              <option value="VT">VT</option>
+              <option value="VA">VA</option>
+              <option value="WA">WA</option>
+              <option value="WV">WV</option>
+              <option value="WI">WI</option>
+              <option value="WY">WY</option>
+            </optgroup>
+            <optgroup label="Military &amp; Diplomatic Mail">
+              <option value="AA">AA</option>
+              <option value="AE">AE</option>
+              <option value="AP">AP</option>
+            </optgroup>
+            <optgroup label="U.S. Territories">
+              <option value="AS">AS</option>
+              <option value="FM">FM</option>
+              <option value="GU">GU</option>
+              <option value="MH">MH</option>
+              <option value="MP">MP</option>
+              <option value="PR">PR</option>
+              <option value="PW">PW</option>
+              <option value="VI">VI</option>
+            </optgroup>
+            <optgroup label="Canadian Provinces">
+              <option value="AB">AB</option>
+              <option value="BC">BC</option>
+              <option value="MB">MB</option>
+              <option value="NB">NB</option>
+              <option value="NL">NL</option>
+              <option value="NS">NS</option>
+              <option value="NT">NT</option>
+              <option value="NU">NU</option>
+              <option value="ON">ON</option>
+              <option value="PE">PE</option>
+              <option value="QC">QC</option>
+              <option value="SK">SK</option>
+              <option value="YT">YT</option>
+            </optgroup>
+          </select>
+          <label for="address-state" class="select-component-label">
+            State
+          </label>
+          <div
+            aria-hidden="true"
+            role="presentation"
+            class="select-component-arrow"
+          >
+            <svg
+              width="16"
+              height="10"
+              viewBox="0 0 16 10"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M1 1L8 8L15 1" stroke-width="1.5"></path>
+            </svg>
+          </div>
+        </div>
+        <div><!----></div>
+      </div>
+      <div class="flex-item top">
+        <div class="text-input-component">
+          <input
+            type="text"
+            name="subscription_shipping_address[address_attributes][zip]"
+            id="address-zip"
+            maxlength="50"
+            autocomplete="postal-code"
+            placeholder="Zip/Postal Code"
+            aria-required="false"
+            aria-labelledby="address-zip-label"
+            class="text-input-component-input"
+          />
+          <label
+            for="address-zip"
+            id="address-zip-label"
+            class="text-input-component-label"
+          >
+            Zip/Postal Code
+          </label>
+          <div><!----></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="select-component">
+        <select
+          name="subscription_shipping_address[address_attributes][country]"
+          id="address-country"
+          autocomplete="country-name"
+          onchange="if (!window.__cfRLUnblockHandlers) return false; this.dataset.selected = !!this.value;"
+          data-selected="true"
+          class="select-component-input text--md"
+          data-gtm-form-interact-field-id="0"
+        >
+          <option value="" label=" "></option>
+          <option selected="selected" value="US">United States</option>
+          <option value="CA">Canada</option>
+        </select>
+        <label for="address-country" class="select-component-label">
+          Country
+        </label>
+        <div
+          aria-hidden="true"
+          role="presentation"
+          class="select-component-arrow"
+        >
+          <svg
+            width="16"
+            height="10"
+            viewBox="0 0 16 10"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M1 1L8 8L15 1" stroke-width="1.5"></path>
+          </svg>
+        </div>
+      </div>
+      <div><!----></div>
+    </div>
+    <div class="sms-signup-form">
+      <div class="mb16 sms-signup-number">
+        <div class="text-input-component">
+          <input
+            type="tel"
+            name="account_attributes[phone_number]"
+            id="address_phone_number"
+            maxlength="14"
+            autocomplete="tel"
+            placeholder="Mobile Number (optional)"
+            aria-required="false"
+            aria-labelledby="address_phone_number-label"
+            class="text-input-component-input"
+          />
+          <label
+            for="address_phone_number"
+            id="address_phone_number-label"
+            class="text-input-component-label"
+          >
+            Mobile Number (optional)
+          </label>
+          <div><!----></div>
+        </div>
+      </div>
+      <div
+        class="text--sm"
+        style="
+          color: rgb(101, 118, 135);
+          font-size: 11px;
+          line-height: 16px;
+        "
+      >
+        By submitting this form with your mobile number, you agree to
+        receive automated marketing alerts customized for your dog, such
+        as shipping updates and last-minute add-on reminders from BARK at
+        the cell number entered upon signing up for SMS. Consent is not a
+        condition of any purchase. Reply HELP for help and STOP to cancel.
+        Msg frequency varies. Msg &amp; data rates may apply. View
+        <a href="https://www.barkbox.com/terms-of-service" target="_blank"
+          >Terms</a
+        >
+        &amp;
+        <a href="https://www.barkbox.com/privacy-policy" target="_blank"
+          >Privacy</a
+        >.
+      </div>
+    </div>
+  </fieldset>
+  <!---->
+  <!---->
+  <div class="subscription-funnel-submit-wrapper">
+    <div class="btn-container submit-btn-container" id="btn-container">
+      <button class="btn btn-continue" id="submit-btn">Continue</button>
+    </div>
+</form>
+  </div>
+
+ <script src="script.js"></script>
+</body>
+</html>
